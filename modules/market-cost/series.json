@@ -1,0 +1,197 @@
+[
+  {
+    "id": "al-cash",
+    "name": {
+      "zh": "倫敦鋁｜現金買價",
+      "en": "LME aluminium · Cash bid"
+    },
+    "group": "materials",
+    "source": "LME",
+    "sourceUrl": "https://www.lme.com/metals/non-ferrous/lme-aluminium",
+    "quoteType": "Official Cash bid",
+    "unit": "tonne",
+    "currency": "USD"
+  },
+  {
+    "id": "al-3m",
+    "name": {
+      "zh": "倫敦鋁｜三個月買價",
+      "en": "LME aluminium · 3-month bid"
+    },
+    "group": "materials",
+    "source": "LME",
+    "sourceUrl": "https://www.lme.com/metals/non-ferrous/lme-aluminium",
+    "quoteType": "Official 3-month bid",
+    "unit": "tonne",
+    "currency": "USD"
+  },
+  {
+    "id": "al-nanhai",
+    "name": {
+      "zh": "南海（灵通）鋁均價",
+      "en": "Nanhai Lingtong · Aluminium average"
+    },
+    "group": "materials",
+    "source": "CNAL",
+    "sourceUrl": "https://market.cnal.com/nanhai/",
+    "quoteType": "頁面鋁均價 / Current aluminium average",
+    "unit": "tonne",
+    "currency": "CNY"
+  },
+  {
+    "id": "cu-lme",
+    "name": {
+      "zh": "倫敦銅｜三個月收盤價",
+      "en": "LME copper · 3-month closing"
+    },
+    "group": "materials",
+    "source": "LME",
+    "sourceUrl": "https://www.lme.com/metals/non-ferrous/lme-copper",
+    "quoteType": "3-month Closing Price (day-delayed)",
+    "unit": "tonne",
+    "currency": "USD"
+  },
+  {
+    "id": "cu-smm",
+    "name": {
+      "zh": "沪铜當月連｜昨收",
+      "en": "SHFE copper continuous · Previous close"
+    },
+    "group": "materials",
+    "source": "SMM",
+    "sourceUrl": "https://hq.smm.cn/copper/list/13819",
+    "quoteType": "當月連 昨收 / Previous close",
+    "unit": "tonne",
+    "currency": "CNY"
+  },
+  {
+    "id": "steel-gz",
+    "name": {
+      "zh": "廣州熱軋板卷｜3.0",
+      "en": "Guangzhou HRC · 3.0"
+    },
+    "group": "materials",
+    "source": "Mysteel",
+    "sourceUrl": "https://index.mysteel.com/price/getChartMultiCity_1_0.html",
+    "quoteType": "當日 3.0 / Current-day 3.0 specification",
+    "unit": "tonne",
+    "currency": "CNY"
+  },
+  {
+    "id": "brent",
+    "name": {
+      "zh": "布蘭特原油報價",
+      "en": "Brent crude quote"
+    },
+    "group": "materials",
+    "source": "WantGoo",
+    "sourceUrl": "https://www.wantgoo.com/global/brent",
+    "quoteType": "指定頁主報價（來源為期貨） / Page quote (futures)",
+    "unit": "barrel",
+    "currency": "USD"
+  },
+  {
+    "id": "fx-usdtwd",
+    "name": {
+      "zh": "USD/TWD",
+      "en": "USD/TWD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "USD",
+    "currency": "TWD"
+  },
+  {
+    "id": "fx-usdcny",
+    "name": {
+      "zh": "USD/CNY",
+      "en": "USD/CNY"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "USD",
+    "currency": "CNY"
+  },
+  {
+    "id": "fx-audusd",
+    "name": {
+      "zh": "AUD/USD",
+      "en": "AUD/USD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "AUD",
+    "currency": "USD"
+  },
+  {
+    "id": "fx-gbpusd",
+    "name": {
+      "zh": "GBP/USD",
+      "en": "GBP/USD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "GBP",
+    "currency": "USD"
+  },
+  {
+    "id": "fx-eurusd",
+    "name": {
+      "zh": "EUR/USD",
+      "en": "EUR/USD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "EUR",
+    "currency": "USD"
+  },
+  {
+    "id": "fx-audtwd",
+    "name": {
+      "zh": "AUD/TWD",
+      "en": "AUD/TWD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "AUD",
+    "currency": "TWD"
+  },
+  {
+    "id": "fx-gbptwd",
+    "name": {
+      "zh": "GBP/TWD",
+      "en": "GBP/TWD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "GBP",
+    "currency": "TWD"
+  },
+  {
+    "id": "fx-cnytwd",
+    "name": {
+      "zh": "CNY/TWD",
+      "en": "CNY/TWD"
+    },
+    "group": "fx",
+    "source": "鉅亨 / Cnyes",
+    "sourceUrl": "https://www.cnyes.com/forex/reuters",
+    "quoteType": "交叉匯率 最新價 / Cross rate latest",
+    "unit": "CNY",
+    "currency": "TWD"
+  }
+]
