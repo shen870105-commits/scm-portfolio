@@ -61,3 +61,8 @@
 - 新版瀏覽器控制目前不可用，多次建立預覽分頁失敗，原生 Chrome 控制亦逾時；因此本次尚未完成新增行情頁的瀏覽器互動、響應式或視覺檢查，不沿用第一階段結果宣稱新頁已通過。
 - Start Preview.command 與中文 README 已更新，提供可持續由使用者啟動的本機服務方式。
 - GitHub 上傳與 Pages 部署為分開狀態，結果見 deployment.md。
+
+- 整合行情 API 的 HTTP 端到端檢查通過：15 項、10 成功、失敗值均為 null，回應帶 no-store。
+- GitHub main 更新成功，提交 aca39bcfe495a71e8e37cec50ae3daa1a5365910；Pages 是否上線另行驗證。
+
+- GitHub Pages 首次公開部署已確認：首頁、製程頁、數據頁、雙語 JS、指標 JSON 與圖片均為 HTTP 200，正式網址 https://shen870105-commits.github.io/scm-portfolio/ 。
