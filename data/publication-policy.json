@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "confirmedAt": "2026-11-03",
+  "confirmationType": "user-confirmed",
+  "evidencePending": true,
+  "note": "使用者確認指定來源允許自動取得及公開展示；來源或授權說明待補，非已獨立驗證授權文件。",
+  "sources": {
+    "LME": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    },
+    "CNAL": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    },
+    "SMM": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    },
+    "Mysteel": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    },
+    "WantGoo": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    },
+    "鉅亨 / Cnyes": {
+      "status": "user-confirmed",
+      "confirmedAt": "2026-11-03",
+      "evidence": "使用者於本次對話確認允許公開展示；文件待補。"
+    }
+  }
+}

@@ -30,7 +30,7 @@ export const profile = {
       ],
       [
         "數據與成本",
-        "查看原物料與匯率的報價定義及來源；自動抓取目前僅供本機使用。"
+        "每日排程更新原物料與匯率快照，清楚標示來源、時間與可用狀態。"
       ],
       [
         "跨國專案",
@@ -44,7 +44,7 @@ export const profile = {
     "footer": "公開製程知識與自製示意；業務示範資料均為虛構，不代表任何公司實際紀錄。",
     "skip": "跳至主要內容",
     "subtitle": "從原料到成品交付的實戰整合",
-    "dataStatus": "指標展示 / 抓取限本機",
+    "dataStatus": "每日快照 / 來源狀態透明",
     "dataEnter": "查看數據模組"
   },
   "en": {
@@ -77,7 +77,7 @@ export const profile = {
       ],
       [
         "Market data & costs",
-        "Explore quote definitions and sources. Automatic fetching is currently available locally."
+        "Daily snapshots of materials and exchange rates, with source, time, and availability clearly labelled."
       ],
       [
         "Cross-border projects",
@@ -91,7 +91,7 @@ export const profile = {
     "footer": "Public process information and original illustrations. All business demonstration data is fictional and does not represent any company’s actual records.",
     "skip": "Skip to main content",
     "subtitle": "Connecting Materials, Production, and Delivery Through Hands-on Experience",
-    "dataStatus": "INDICATORS / LOCAL FETCHING",
+    "dataStatus": "DAILY SNAPSHOTS / SOURCE STATUS",
     "dataEnter": "View the data module"
   }
 };

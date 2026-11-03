@@ -1,4 +1,4 @@
-import {profile} from './profile.js?v=market-release';
+import {profile} from './profile.js?v=daily-snapshot';
 import {languageController} from '../shared/language.js';
 const set = (id,text) => document.getElementById(id).textContent = text;
 languageController(language => {

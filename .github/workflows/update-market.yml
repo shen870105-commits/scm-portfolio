@@ -1,0 +1,69 @@
+name: 每日行情與 Pages 發布
+
+on:
+  schedule:
+    # 台灣時間每日 18:17；排程可能因 GitHub 負載延遲。
+    - cron: '17 18 * * *'
+      timezone: Asia/Taipei
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 取得程式
+        uses: actions/checkout@v6
+      - name: 設定 Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: 檢查解析與快照規則
+        run: |
+          python -m unittest discover -s tests -v
+          node --test tests/test_snapshot.mjs
+      - name: 取得本輪行情並產生快照
+        run: python -m server.export_snapshot --output .private/market-latest.json
+      - name: 打包公開網站
+        run: python scripts/build_site.py --snapshot .private/market-latest.json --output dist
+      - name: 記錄本輪狀態
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          data=json.loads(Path('.private/market-latest.json').read_text())
+          text=f"### 每日快照\n產生時間：{data['generatedAt']}\n\n可公開數值：{data['summary']['published']} / {data['summary']['total']}\n\n未取得或未確認項目顯示缺值，沒有舊資料回填。\n"
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as file:
+              file.write(text)
+          PY
+      - name: 上傳 Pages 網站產物
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 發布 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

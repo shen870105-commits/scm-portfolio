@@ -7,11 +7,11 @@ Yvonne Shen 的互動作品集，連結製程理解、數據與成本、跨國�
 | 模組 | 公開版 | 本機版 |
 | --- | --- | --- |
 | 鋁擠型製程 | 六步互動、補充分支、中英文切換、手機適配 | 同公開版 |
-| 原物料與匯率 | 15 項指標、口徑與來源；不提供行情數字 | 按次抓取；本次驗證 10/15 成功，5 項未完成／受限 |
+| 原物料與匯率 | 15 項指標、每日排程行情快照、來源與時間、逾期隱藏 | 按次抓取；來源可用性以當輪結果為準 |
 | 成本情境比較 | 尚未開發 | 尚未開發 |
 | 跨國專案 | Coming Soon | Coming Soon |
 
-GitHub Pages 僅承載靜態作品集。依作者確認，自動抓取暫留本機，不將本機報價快照當成公開即時資料。
+GitHub Actions 預定於台灣時間每日 18:17 取得行情並發布靜態快照；GitHub Pages 展示最新發布資料。排程可能延遲，不是訪客開頁即時抓價。本機仍可使用即抓服務。
 
 ## 啟動本機網站與行情服務
 
@@ -31,12 +31,12 @@ python3 -m server.app --port 8766
 
 ## 數據規則與限制
 
-- 每次進入數據頁或按更新，伺服器向來源重新請求；無歷史查詢或舊快取回填。
-- 更新開始移除前次數字；失敗顯示缺值與原因，不以 0 或虛構價格替代。
+- 本機每次進入／更新向來源請求；公開版進入／更新只讀最近部署 JSON，來源抓取由每日 Actions 執行。每輪不讀歷史、不回填之前快照。
+- 更新開始移除前次數字；本輪失敗輸出缺值，不以 0、虛構值或前一輪價格替代。公開快照超過 30 小時後隱藏數字並標示逾期。
 - 保留來源本身的延遲與日期。抓取時間不等於行情時間；鉅亨交叉介面未提供每筆行情時間時，介面會明確說明。
 - LME 鋁 Official 接口實測 403；SMM 當月連、Mysteel 3.0 及玩股網 BRENT 的確切資料接入尚未完成。
 - 本次已驗證：南海（灵通）鋁均價、LME 銅主報價、鉅亨八組交叉匯率。可用性會隨來源改版或限制改變。
-- 公開再發布行情的授權尚未確認，故公開版不傳送第三方行情數字，也不發布真實測試回應或快取。
+- 指定來源的自動取得及公開展示權已由作者於 2026-11-03 確認，來源或授權說明待補；不冒充已驗證授權文件。`data/publication-policy.json` 記錄狀態，未確認的新來源不輸出數字。
 - 詳細來源證據及限制見 `docs/market-data-sources.md`。
 
 ## 修改位置
@@ -58,21 +58,34 @@ python3 -m server.app --port 8766
 
 ```bash
 python3 -m unittest discover -s tests -v
+node --test tests/test_snapshot.mjs
 ```
 
 測試使用虛構資料，包含數值驗證、口徑辨識、來源部分失敗與禁止舊資料回填；不連線第三方網站。實際檢查範圍與限制見 `docs/verification.md`。
 
-## GitHub Pages 發布
+## GitHub Pages + Actions 發布
 
-本專案是無建置步驟的靜態網站。於儲存庫 Settings → Pages 選擇：
+在儲存庫 Settings → Pages 將 Source 設為 **GitHub Actions**。首次修改 workflow 推送 main 會觸發測試與部署；之後每天台灣時間 18:17 自動執行，也可在 Actions →「每日行情與 Pages 發布」→ Run workflow 手動觸發。
 
-- Source：Deploy from a branch
-- Branch：main
-- Folder：/(root)
+`.github/workflows/update-market.yml` 流程：測試 → `python -m server.export_snapshot` → `python scripts/build_site.py` → 上傳 `dist` → deploy-pages。只需內建 GITHUB_TOKEN 的 contents:read、pages:write、id-token:write；不需要個人權杖，不將憑證放進前端。
 
-儲存後等待 GitHub Pages 部署成功。`.nojekyll` 保留原檔案結構。網站使用相對頁面與資源連結，適用 `/scm-portfolio/` 子路徑。
+JSON 放在部署產物的 `data/market-latest.json`，不每天提交到 Git。原始回應與 `.private` 不上傳；Pages 產物保留 1 天供部署，不作歷史值回填。一般程式或資料來源變更仍需推送到 main。
 
-發布狀態與正式網址見 `docs/deployment.md`。把程式上傳 GitHub 不等於 Pages 已啟用，需確認實際部署結果。
+每次只發布一輪資料；整輪來源失敗也發布缺值。若 Actions 自身失敗，上一版站可能仍在線，前端會在快照超過 30 小時時停止顯示數字。若來源未更新但仍展示延遲價格，照實保留來源日期。
+
+公開版「重新讀取最新發布」只是重新載入 JSON，不會啟動 GitHub Actions。排程執行及公開部署成功是分開狀態，請查看 Actions 記錄及網站快照時間。
+
+### 本機預覽每日快照模式
+
+```bash
+python3 -m server.export_snapshot --output .private/market-latest.json
+python3 scripts/build_site.py --output dist --snapshot .private/market-latest.json
+python3 -m http.server 8770 --directory dist --bind 127.0.0.1
+```
+
+開啟 `http://127.0.0.1:8770/modules/market-cost/index.html?mode=snapshot`。打包工具拒絕覆蓋已存在的輸出資料夾；再次測試請用新的 `--output` 名稱，預覽伺服器的 `--directory` 同步更改。
+
+正式網址及驗證結果見 `docs/deployment.md`。GitHub 公開儲存庫若長期無活動，排程可能被停用；排程也可能延遲。不能將設定檔存在等同於已成功執行。
 
 ## 素材與資料
 
