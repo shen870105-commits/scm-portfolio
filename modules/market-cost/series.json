@@ -61,8 +61,12 @@
     "source": "SMM",
     "sourceUrl": "https://hq.smm.cn/copper/list/13819",
     "quoteType": "當月連 昨收 / Previous close",
-    "unit": "tonne",
-    "currency": "CNY"
+    "unit": "unverified",
+    "currency": "CNY",
+    "note": {
+      "zh": "時間為文章發布時間；昨收所屬交易日、每噸單位尚未由此頁確認。",
+      "en": "Time refers to article publication. The previous-close trading date and per-tonne unit are not specified on this page."
+    }
   },
   {
     "id": "steel-gz",
@@ -80,15 +84,19 @@
   {
     "id": "brent",
     "name": {
-      "zh": "布蘭特原油報價",
-      "en": "Brent crude quote"
+      "zh": "布蘭特原油期貨報價",
+      "en": "Brent crude futures quote"
     },
     "group": "materials",
     "source": "WantGoo",
     "sourceUrl": "https://www.wantgoo.com/global/brent",
     "quoteType": "指定頁主報價（來源為期貨） / Page quote (futures)",
     "unit": "barrel",
-    "currency": "USD"
+    "currency": "USD",
+    "note": {
+      "zh": "採指定頁主報價；來源時間未標明時區，不以抓取時間替代。",
+      "en": "Uses the page headline quote. Its displayed time has no stated timezone; retrieval time is separate."
+    }
   },
   {
     "id": "fx-usdtwd",

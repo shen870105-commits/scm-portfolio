@@ -124,9 +124,19 @@ def load_aluminium():
     # 目前實測介面拒絕存取；未取得成功樣本前不猜測表格資料結構。
     raise SourceError('adapter_pending')
 
+def load_smm():
+    from .market_sources import load_smm as load
+    return load()
+
+def load_brent():
+    from .market_sources import load_brent as load
+    return load()
+
 LOADERS = [
     (['al-cash', 'al-3m'], load_aluminium),
     (['al-nanhai'], load_nanhai),
+    (['cu-smm'], load_smm),
+    (['brent'], load_brent),
     (['cu-lme'], load_copper),
     ([r['id'] for r in SERIES if r['group'] == 'fx'], load_cross),
 ]

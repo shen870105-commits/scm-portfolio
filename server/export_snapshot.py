@@ -5,10 +5,11 @@ import argparse
 import json
 import math
 import os
+import re
 from .market import SERIES, collect
 
 MAX_AGE_HOURS = 30
-ERROR_CODES = {'adapter_pending','access_denied','source_unreachable','source_http_error','invalid_response','field_missing','invalid_value','response_too_large','collection_failed'}
+ERROR_CODES = {'adapter_pending','access_denied','source_unreachable','source_http_error','invalid_response','field_missing','invalid_value','response_too_large','collection_failed','browser_unavailable','browser_timeout'}
 
 def iso(value):
     return value.astimezone(timezone.utc).isoformat(timespec='seconds')
@@ -48,6 +49,9 @@ def build_snapshot(result, policy, generated=None):
                 for field in ('marketDate','marketTime','timezone','delay','fetchedAt','lastSuccessAt'):
                     value=item.get(field)
                     row[field]=value if isinstance(value,str) and len(value)<=100 else None
+                article=item.get('sourceArticleUrl')
+                if definition['id']=='cu-smm' and isinstance(article,str) and re.fullmatch(r'https://hq\.smm\.cn/futures/[0-9]+',article):
+                    row['sourceArticleUrl']=article
         else:
             code=item.get('errorCode')
             row['errorCode']=code if code in ERROR_CODES else 'invalid_response'

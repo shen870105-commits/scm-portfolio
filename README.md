@@ -92,3 +92,12 @@ python3 -m http.server 8770 --directory dist --bind 127.0.0.1
 首頁圖片由作者提供，並已確認有權公開使用。原始圖像不作任意轉授權；程式與其餘內容的開源授權尚未指定。素材紀錄見 `assets/README.md`。
 
 一般製程說明不代表工廠 SOP，也不宣稱本人操作全部工序。實務心法與建議管理觀點分開標示；完整驗貨、出貨或批號查詢系統尚未開發。
+
+
+### 沪銅與布蘭特抓取方式
+
+沪銅每輪由列表找到最新文章，依「沪铜当月连／昨收」取值，查看來源會連到實際文章；文章日期不等於昨收交易日。布蘭特需在瀏覽器載入公開頁後讀主報價、來源時間及延遲標示。
+
+Actions 會自動安裝 server/requirements.txt 指定的 Playwright 與 Chromium。本機若也要抓布蘭特，需先執行 `python3 -m pip install -r server/requirements.txt` 及 `python3 -m playwright install chromium`；未安裝時該項顯示瀏覽器服務不可用，不影響其他來源。不需要帳密或 API 金鑰，也沒有反偵測設定。
+
+即使安裝完成，來源仍可能拒絕雲端連線；屆時顯示原因及缺值，不以本機、歷史或模擬行情代替。
